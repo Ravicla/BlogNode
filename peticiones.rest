@@ -4,9 +4,14 @@ GET http://localhost:3000/api/post
 GET http://localhost:3000/api/post/4
 ###
 
-GET http://localhost:3000/api/autor/1
-
+GET http://localhost:3000/api/autor
 ###
+
+GET http://localhost:3000/api/autor/1
+###
+
+
+
 POST http://localhost:3000/api/blog
 Content-Type: application/json
 
@@ -16,8 +21,20 @@ Content-Type: application/json
     "categoria": "Romance",
     "autores_id": 1
 }
-
 ###
+
+POST http://localhost:3000/api/autor
+Content-Type: application/json
+
+{
+    "nombre": "Mick Jackson",
+    "email": "mickj@outlook.com",
+    "imagen": "https://www.lanacion.com.ar/resizer/0y2qJGiQTxhCVIb6ak5f8DUDotQ=/1920x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/JV74LZLLURFNHNUMV3SAWUHBPQ.JPG"
+}
+###
+
+
+
 PUT http://localhost:3000/api/blog
 ###
 

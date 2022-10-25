@@ -5,7 +5,6 @@ const {getAll, getByPage, getById, create} = require('../../models/post.model');
 
 router.get('/', async (req, res) => {
     const { page = 1, limit = 4 } = req.query;
-
     try {
         const posts = await getByPage(parseInt(page), parseInt(limit));
         res.json(posts);
@@ -13,8 +12,6 @@ router.get('/', async (req, res) => {
         res.json({fatal: error.message});
     }    
 });
-
-
 
 router.get('/:postId', async (req, res) => {
     const {postId} = req.params;
@@ -25,8 +22,6 @@ router.get('/:postId', async (req, res) => {
         res.json({error: 'No existe un post con ese ID'});
     } 
 });
-
-
 
 
 router.post('/', 
