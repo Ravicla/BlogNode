@@ -4,7 +4,7 @@ GET http://localhost:3000/api/post
 GET http://localhost:3000/api/post/4
 ###
 
-GET http://localhost:3000/api/autor/3
+GET http://localhost:3000/api/autor/1
 
 ###
 POST http://localhost:3000/api/blog
