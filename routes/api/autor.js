@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const {body, validationResult} = require('express-validator');
+const {body, validationResult, checkSchema} = require('express-validator');
 
 const { getAll, getByPage, getById, create} = require('../../models/autor.model');
+const {nuevoAutor, checkError} = require('../../helpers/validators');
 
 router.get('/', async (req, res) => {
     const { page = 1, limit = 4 } = req.query;
@@ -25,15 +26,9 @@ router.get('/:autorId', async (req, res) => {
 });
 
 router.post('/', 
-    body('nombre')
-    .exists().withMessage('El nombre del autor es requerido')
-    , async (req, res) => {
-
-        const errors = validationResult(req);
-        if(!errors.isEmpty()) {
-            return res.status(400).json(errors.mapped());
-        }
-
+    checkSchema(nuevoAutor),
+    checkError
+    , async (req, res) => {     
         try {
         const result = await create (req.body);
         const autor = await getById(result.insertId);

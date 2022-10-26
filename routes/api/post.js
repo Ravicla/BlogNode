@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { body, validationResult} = require('express-validator');
+const { body, validationResult, checkSchema} = require('express-validator');
 
 const {getAll, getByPage, getById, create} = require('../../models/post.model');
+const { nuevoPost, checkError } = require ('../../helpers/validators');
 
 router.get('/', async (req, res) => {
     const { page = 1, limit = 4 } = req.query;
@@ -25,15 +26,9 @@ router.get('/:postId', async (req, res) => {
 
 
 router.post('/', 
-    body('titulo')
-    .exists().withMessage('El titulo es requerido')
+    checkSchema(nuevoPost),
+    checkError
     , async (req, res) => {
-
-        const errors = validationResult(req);
-        if(!errors.isEmpty()) {
-            return res.status(400).json(errors.mapped());
-        }
-
         try {
         const result = await create (req.body);
         const post = await getById(result.insertId);

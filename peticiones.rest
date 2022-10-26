@@ -1,3 +1,4 @@
+
 GET http://localhost:3000/api/post
 ###
 
@@ -12,13 +13,14 @@ GET http://localhost:3000/api/autor/1
 
 
 
-POST http://localhost:3000/api/blog
+POST http://localhost:3000/api/post
 Content-Type: application/json
 
 {
-    "descripcion": "Cassie Salazar es una joven que vive en un pequeño apartamento en ruinas. Diagnosticada con diabetes tipo 1 hace 6 meses, Cassie no tiene suficiente para cubrir la insulina. Puede pagar los medicamentos o pagar el alquiler, pero no ambos. Trabaja en un bar como mesera donde también realiza covers con su banda, The Loyal. Conoce a Luke Morrow por primera vez cuando un grupo de marines estadounidenses recién reclutados entra en el bar una noche. En ese grupo está Frankie, el amigo de la infancia de Cassie. Comienzan a ponerse al día cuando sus amigos comienzan a hacer bromas misóginas hacia Cassie. Ella les dispara antes de alejarse. Luke intenta hacer las paces, lo que finalmente falla ya que los dos tienen mentalidades muy opuestas.",
-    "fecha_creacion": "2022-07-29",
-    "categoria": "Romance",
+    "titulo": "tengo mucho sueño",
+    "descripcion": "Enserio quiero dormir",
+    "fecha_creacion": "2022-25-10",
+    "categoria": "Terror",
     "autores_id": 1
 }
 ###
@@ -27,9 +29,9 @@ POST http://localhost:3000/api/autor
 Content-Type: application/json
 
 {
-    "nombre": "Mick Jackson",
-    "email": "mickj@outlook.com",
-    "imagen": "https://www.lanacion.com.ar/resizer/0y2qJGiQTxhCVIb6ak5f8DUDotQ=/1920x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/JV74LZLLURFNHNUMV3SAWUHBPQ.JPG"
+    "nombre": "Nicolassd",
+    "email": "mickj@gma",
+    "imagen": "https://www.lanacion.com.ar/resizer/=/1920x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/JV74LZLLURFNHNUMV3SAWUHBPQ.JPG"
 }
 ###
 
