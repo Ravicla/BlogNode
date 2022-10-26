@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {body, validationResult, checkSchema} = require('express-validator');
 
-const { getAll, getByPage, getById, create} = require('../../models/autor.model');
+const { getAll, getByPage, getById, create, deleteById} = require('../../models/autor.model');
 const {nuevoAutor, checkError} = require('../../helpers/validators');
 
 router.get('/', async (req, res) => {
@@ -42,12 +42,15 @@ router.post('/',
 
 
 
-router.put('/:postId', (req, res) => {
+router.put('/:autorId', (req, res) => {
     res.send('Edito un autor');
 });
 
-router.delete('/:postId', (req, res) => {
-    res.send('Borro un autor');
+router.delete('/:autorId', async (req, res) => {
+    const {autorId} = req.params;
+    const result = await deleteById(autorId);
+    res.json(result)
+    
 });
 
 module.exports = router;

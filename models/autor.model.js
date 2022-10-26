@@ -16,6 +16,10 @@ const create = ({ nombre, email, imagen }) => {
     return executeQuery('insert into autores (nombre, email, imagen) values (?, ?, ?)', [ nombre, email, imagen ]);
 }
 
+const deleteById = (autorId) => {
+    return executeQuery('delete from blog.autores where id = ?', [autorId]);
+}
+
 module.exports = {
-    getAll, getById, getByPage, create
+    getAll, getById, getByPage, create, deleteById
 } 

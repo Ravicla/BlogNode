@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { body, validationResult, checkSchema} = require('express-validator');
 
-const {getAll, getByPage, getById, create} = require('../../models/post.model');
+const {getAll, getByPage, getById, create, deleteById} = require('../../models/post.model');
 const { nuevoPost, checkError } = require ('../../helpers/validators');
 
 router.get('/', async (req, res) => {
@@ -50,8 +50,10 @@ router.put('/:postId', (req, res) => {
     res.send('Edito un post');
 });
 
-router.delete('/:postId', (req, res) => {
-    res.send('Borro un post');
+router.delete('/:postId', async (req, res) => {
+    const {postId} = req.params;
+    const result = await deleteById(postId);
+    res.json(result)
 });
 
 module.exports = router;
