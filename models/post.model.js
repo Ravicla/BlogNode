@@ -9,7 +9,8 @@ const getByPage = (page, limit) => {
 }
 
 const getById = (postId) => {
-    return executeQueryOne ('select * from blog.posts as p inner join blog.autores as a on p.autores_id = a.id where p.id = ?', [postId]);
+    return executeQueryOne ('select * from blog.posts where id = ?', [postId]);
+    //return executeQueryOne ('select * from blog.posts as p inner join blog.autores as a on p.autores_id = a.id where p.id = ?', [postId]);
 }
 
 const create = ({ titulo, descripcion, fecha_creacion, categoria, autores_id}) => {
@@ -20,6 +21,10 @@ const deleteById = (postId) => {
     return executeQuery('delete from blog.posts where id = ?', [postId]);
 }
 
+const update = (postId, {titulo, descripcion, fecha_creacion, categoria, autores_id}) => {
+    return executeQuery('update posts set titulo = ?, descripcion = ?, fecha_creacion = ?, categoria = ?, autores_id = ? where id = ?',[titulo, descripcion, fecha_creacion, categoria, autores_id, postId]);
+}
+
 module.exports = {
-    getAll, getByPage, getById, create, deleteById
+    getAll, getByPage, getById, create, deleteById, update
 } 
