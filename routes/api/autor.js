@@ -1,8 +1,20 @@
 const router = require('express').Router();
 const {body, validationResult, checkSchema} = require('express-validator');
 
-const { getAll, getByPage, getById, create, deleteById} = require('../../models/autor.model');
+const { getAll, getByPage, getById, create, deleteById, update} = require('../../models/autor.model');
 const {nuevoAutor, checkError} = require('../../helpers/validators');
+
+
+/*router.get('/', (req, res) => {
+    getAll()
+        .then(autores => {
+            res.json(autores);
+        })
+        .catch((error) => {
+            res.json({ fatal: error.message });
+        }); 
+}); */
+
 
 router.get('/', async (req, res) => {
     const { page = 1, limit = 4 } = req.query;
@@ -15,6 +27,7 @@ router.get('/', async (req, res) => {
     }    
 });
 
+
 router.get('/:autorId', async (req, res) => {
     const {autorId} = req.params;
     const autor = await getById(autorId);
@@ -24,6 +37,7 @@ router.get('/:autorId', async (req, res) => {
         res.json({error: 'No existe un autor con ese ID'});
     } 
 });
+
 
 router.post('/', 
     checkSchema(nuevoAutor),
@@ -40,11 +54,13 @@ router.post('/',
 });
 
 
+router.put('/:autorId', async (req, res) => {
+    const { autorId } = req.params;
+    const result = await update (autorId, req.body);
+    res.json(result);
 
-
-router.put('/:autorId', (req, res) => {
-    res.send('Edito un autor');
 });
+
 
 router.delete('/:autorId', async (req, res) => {
     const {autorId} = req.params;
@@ -52,5 +68,6 @@ router.delete('/:autorId', async (req, res) => {
     res.json(result)
     
 });
+
 
 module.exports = router;

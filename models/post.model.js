@@ -25,6 +25,7 @@ const update = (postId, {titulo, descripcion, fecha_creacion, categoria, autores
     return executeQuery('update posts set titulo = ?, descripcion = ?, fecha_creacion = ?, categoria = ?, autores_id = ? where id = ?',[titulo, descripcion, fecha_creacion, categoria, autores_id, postId]);
 }
 
+
 module.exports = {
     getAll, getByPage, getById, create, deleteById, update
 } 

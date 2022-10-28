@@ -44,12 +44,22 @@ Content-Type: application/json
 }
 
 
+###
+PUT http://localhost:3000/api/autor/19
+Content-Type: application/json
+
+{
+  "nombre": "Mick",
+  "email": "jacksoj@outlook.com",
+  "imagen": "https://www.lanacion.com.ar/resizer/0y2qJGiQTxhCVIb6ak5f8DUDotQ=/1920x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/JV74LZLLURFNHNUMV3SAWUHBPQ.JPG"
+}
+
 
 ###
 DELETE http://localhost:3000/api/post/16
 
 ###
-DELETE http://localhost:3000/api/autor/26
+DELETE http://localhost:3000/api/autor/19
 
 
 

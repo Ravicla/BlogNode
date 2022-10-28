@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
     }    
 });
 
+
 router.get('/:postId', async (req, res) => {
     const {postId} = req.params;
     const post = await getById(postId);
@@ -53,9 +54,6 @@ router.post('/',
 });
 
 
-
-
-
 router.put('/:postId', async (req, res) => {
     const { postId } = req.params;
     const result = await update (postId, req.body);
@@ -63,13 +61,11 @@ router.put('/:postId', async (req, res) => {
 });
 
 
-
-
-
 router.delete('/:postId', async (req, res) => {
     const {postId} = req.params;
     const result = await deleteById(postId);
     res.json(result)
 });
+
 
 module.exports = router;
