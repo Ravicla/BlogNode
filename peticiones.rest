@@ -1,8 +1,13 @@
 
-GET http://localhost:3000/api/post/3
+GET http://localhost:3000/api/post/1
 
 ###
-GET http://localhost:3000/api/post/2/autor
+GET http://localhost:3000/api/post/1/autor
+
+
+
+
+
 
 ###
 GET http://localhost:3000/api/autor/1

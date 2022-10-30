@@ -38,6 +38,35 @@ router.get('/:autorId', async (req, res) => {
     } 
 });
 
+router.get('/:autorId/:post', async (req, res) => {
+    const {autorId} = req.params;
+    const autor = await getById(autorId);
+    if(autor) {
+        
+        let arrayPosts = new Array();
+        autor.forEach(items => {
+            const post = {
+                "titulo":items.titulo,
+                "descripcion":items.descripcion,
+                "fecha_creacion":items.fecha_creacion,
+                "categoria":items.categoria
+            };
+            arrayPosts.push(post);
+        });
+
+        const respuesta = {
+            "id": autor[0].id,
+            "nombre": autor[0].nombre,
+            "email": autor[0].email,
+            "imagen": autor[0].imagen,
+            "posts":arrayPosts
+        };
+        res.json(respuesta)
+    } else {
+        res.json({error: 'No existe un autor con ese ID'});
+    } 
+});
+
 
 router.post('/', 
     checkSchema(nuevoAutor),
