@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { body, validationResult, checkSchema} = require('express-validator');
 
 const {getAll, getByPage, getById, create, deleteById, update} = require('../../models/post.model');
+const {getAutorById} = require('../../models/autor.model');
 const { nuevoPost, checkError } = require ('../../helpers/validators');
 
 
@@ -39,6 +40,27 @@ router.get('/:postId', async (req, res) => {
         res.json({error: 'No existe un post con ese ID'});
     } 
 });
+
+router.get('/:postId/:autor', async (req, res) => {
+    const {postId} = req.params;
+    const post = await getById(postId);
+    if(post) {
+        const autor = await getAutorById(post.autores_id);
+        console.log(autor);
+        const respuesta = {
+            "id": post.id,
+            "titulo": post.titulo,
+            "descripcion": post.descripcion,
+            "fecha_creacion": post.fecha_creacion,
+            "categoria": post.categoria,
+            "autores_id": post.autores_id,
+            autor
+        };
+        res.json(respuesta);
+    } else {
+        res.json({error: 'No existe un post con ese ID'});
+    } 
+}); 
 
 
 router.post('/', 

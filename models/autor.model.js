@@ -9,7 +9,10 @@ const getByPage = (page, limit) => {
 }
 
 const getById = (autorId) => {
-    return executeQueryMany ('select * from blog.autores as a inner join blog.posts as p on a.id=p.autores_id where a.id = ?', [autorId]);
+    return executeQueryMany ('select * from blog.autores as a inner join blog.posts as p on a.id = p.autores_id where a.id = ?', [autorId]);
+}
+const getAutorById = (autorId) => {
+    return executeQueryMany ('select * from blog.autores as a where a.id = ?', [autorId]);
 }
 
 const create = ({ nombre, email, imagen }) => {
@@ -26,5 +29,5 @@ const update = (autorId, {nombre, email, imagen}) => {
 
 
 module.exports = {
-    getAll, getById, getByPage, create, deleteById, update
+    getAll, getById, getByPage, create, deleteById, update, getAutorById
 } 
