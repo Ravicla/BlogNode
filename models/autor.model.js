@@ -1,4 +1,4 @@
-const {executeQuery, executeQueryOne} = require ('../helpers/utils')
+const {executeQuery, executeQueryOne,executeQueryMany} = require ('../helpers/utils')
 
 const getAll = () => {
     return executeQuery ('select * from autores', []);
@@ -9,7 +9,7 @@ const getByPage = (page, limit) => {
 }
 
 const getById = (autorId) => {
-    return executeQueryOne ('select * from blog.autores where id = ?', [autorId]);
+    return executeQueryMany ('select * from blog.autores as a inner join blog.posts as p on a.id=p.autores_id where a.id = ?', [autorId]);
 }
 
 const create = ({ nombre, email, imagen }) => {

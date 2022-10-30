@@ -32,7 +32,9 @@ router.get('/:postId', async (req, res) => {
     const {postId} = req.params;
     const post = await getById(postId);
     if(post) {
-        res.json(post)
+        console.log(post);
+        res.json(post);
+
     } else {
         res.json({error: 'No existe un post con ese ID'});
     } 
