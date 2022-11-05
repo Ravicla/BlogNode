@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const {body, validationResult, checkSchema} = require('express-validator');
 
-const { getAll, getByPage, getById, create, deleteById, update} = require('../../models/autor.model');
+const { getAll, getByPage, getById, create, deleteById, update, getAutorById} = require('../../models/autor.model');
 const {nuevoAutor, checkError} = require('../../helpers/validators');
 
 
-/*router.get('/', (req, res) => {
+router.get('/', (req, res) => {
     getAll()
         .then(autores => {
             res.json(autores);
@@ -13,24 +13,22 @@ const {nuevoAutor, checkError} = require('../../helpers/validators');
         .catch((error) => {
             res.json({ fatal: error.message });
         }); 
-}); */
+}); 
 
 
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
     const { page = 1, limit = 4 } = req.query;
-
     try {
         const autores = await getByPage(parseInt(page), parseInt(limit));
         res.json(autores);
     } catch (error) {
         res.json({fatal: error.message});
     }    
-});
-
+}); */
 
 router.get('/:autorId', async (req, res) => {
     const {autorId} = req.params;
-    const autor = await getById(autorId);
+    const autor = await getAutorById(autorId);
     if(autor) {
         res.json(autor)
     } else {
@@ -67,14 +65,13 @@ router.get('/:autorId/:post', async (req, res) => {
     } 
 });
 
-
 router.post('/', 
     checkSchema(nuevoAutor),
     checkError
     , async (req, res) => {     
         try {
         const result = await create (req.body);
-        const autor = await getById(result.insertId);
+        const autor = await getAutorById(result.insertId);
         res.json(autor);
     } catch (error) {
         res.json({fatal: error.message});
@@ -82,14 +79,12 @@ router.post('/',
     
 });
 
-
 router.put('/:autorId', async (req, res) => {
     const { autorId } = req.params;
     const result = await update (autorId, req.body);
     res.json(result);
 
 });
-
 
 router.delete('/:autorId', async (req, res) => {
     const {autorId} = req.params;

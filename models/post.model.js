@@ -10,7 +10,6 @@ const getByPage = (page, limit) => {
 
 const getById = (postId) => {
     return executeQueryOne ('select * from blog.posts where id = ?', [postId]);
-    //return executeQueryOne ('select * from blog.posts as p inner join blog.autores as a on p.autores_id = a.id where p.id = ?', [postId]);
 }
 
 const create = ({ titulo, descripcion, fecha_creacion, categoria, autores_id}) => {

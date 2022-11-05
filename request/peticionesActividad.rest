@@ -1,0 +1,28 @@
+###
+GET http://localhost:3000/api/post/1/autor
+
+###
+GET http://localhost:3000/api/autor/1/posts
+
+###
+POST http://localhost:3000/api/post
+Content-Type: application/json
+
+{
+  "titulo": "tengo sueño hoy tambien",
+  "descripcion": "Enserio quiero dormir",
+  "fecha_creacion": "2022-02-10",
+  "categoria": "Terror",
+  "autores_id": 1
+}
+
+
+###
+POST http://localhost:3000/api/autor
+Content-Type: application/json
+
+{
+    "nombre": "Thalia",
+    "email": "thalia@gmail.com",
+    "imagen": "https://www.lanacion.com.ar/resizer/=/1920x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/JV74LZLLURFNHNUMV3SAWUHBPQ.JPG"
+}

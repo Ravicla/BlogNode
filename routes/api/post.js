@@ -6,7 +6,7 @@ const {getAutorById} = require('../../models/autor.model');
 const { nuevoPost, checkError } = require ('../../helpers/validators');
 
 
-/*
+
 router.get('/', (req, res) => {
     getAll()
         .then(post => {
@@ -15,10 +15,10 @@ router.get('/', (req, res) => {
         .catch((error) => {
             res.json({ fatal: error.message });
         }); 
-}); */
+}); 
 
 
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
     const { page = 1, limit = 4 } = req.query;
     try {
         const posts = await getByPage(parseInt(page), parseInt(limit));
@@ -26,14 +26,13 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.json({fatal: error.message});
     }    
-});
+}); */
 
 
 router.get('/:postId', async (req, res) => {
     const {postId} = req.params;
     const post = await getById(postId);
     if(post) {
-        console.log(post);
         res.json(post);
 
     } else {
@@ -46,7 +45,6 @@ router.get('/:postId/:autor', async (req, res) => {
     const post = await getById(postId);
     if(post) {
         const autor = await getAutorById(post.autores_id);
-        console.log(autor);
         const respuesta = {
             "id": post.id,
             "titulo": post.titulo,

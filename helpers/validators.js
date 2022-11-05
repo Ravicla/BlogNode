@@ -26,6 +26,7 @@ const nuevoAutor = {
     }
     
 }
+
 const nuevoPost = {
     titulo: {
         exists: true,
